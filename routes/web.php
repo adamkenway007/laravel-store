@@ -13,29 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/', 'PageController@home_page') {
-//     // return '<h1>Hi this is the most important laravel project</h1>';
-// });
-
-Route::get('/', function() {
-	return view('pages.index');
-    // return '<h1>Hi this is the most important laravel project in the about page</h1>';
-});
-
-Route::get('/about', function() {
-	return view('pages.about');
-    // return '<h1>Hi this is the most important laravel project in the about page</h1>';
-});
-
-Route::get('/services', function() {
-	return view('pages.services');
-    // return '<h1>Hi this is the most important laravel project in the services page</h1>';
-});
-
-Route::get('/services/{name}/{id}', function($name, $id) {
-    return '<h1>My name is '.$name.' and My id is '.$id.'</h1>';
-});
+// Route::get('/', 'WelcomeController@home');
+Route::get('/', 'PagesController@home');
+Route::get('/about', 'PagesController@about');
+Route::get('/services', 'PagesController@services');
