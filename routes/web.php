@@ -20,3 +20,6 @@ Route::get('/services', 'PagesController@services');
 Route::get('/create', 'PagesController@create');
 Route::post('/simpanproduk', 'PagesController@simpanproduk');
 Route::get('/show/{id}', 'PagesController@show');
+Route::get('/edit/{id}', 'PagesController@editproduk');
+Route::post('/update', 'PagesController@updateproduk');
+Route::get('/delete/{id}', 'PagesController@hapusproduk');

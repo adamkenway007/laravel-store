@@ -5,7 +5,16 @@
 @endsection
 
 @section('content')
-<main role="main" class="container">  
+<main role="main" class="container">
+<h1>Welcome to the services page</h1>
+@if (Session::has('success'))
+  <div class="card-body">
+    <div class="alert alert-success">
+      {{Session::get('success')}}
+      {{Session::put('success', null)}}
+    </div>
+  </div>
+@endif  
   @foreach($produks as $produk)
   <div class="jumbotron">
     <hr class="my-4">
