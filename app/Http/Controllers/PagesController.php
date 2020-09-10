@@ -40,24 +40,51 @@ class PagesController extends Controller
 
     public function simpanproduk(Request $request){
 
-        // $produk = new Produk();
-        // $produk->nama_produk      = $request->nama_produk;
-        // $produk->harga_produk     = $request->harga_produk;
-        // $produk->deskripsi_produk = $request->deskripsi_produk;
+        $this->validate($request, ['nama_produk'       =>  'required',
+                                   'harga_produk'      =>  'required',
+                                   'deskripsi_produk'  =>  'required']);
+        
+        $produk = new Produk();
+        $produk->nama_produk      = $request->input('nama_produk');
+        $produk->harga_produk     = $request->harga_produk;
+        $produk->deskripsi_produk = $request->deskripsi_produk;
 
-        // $produk->save();
+        $produk->save();
 
-        $data = array();
-        $data['nama_produk']      = $request->nama_produk;
-        $data['harga_produk']     = $request->harga_produk;
-        $data['deskripsi_produk'] = $request->deskripsi_produk;
+        // $data = array();
+        // $data['nama_produk']      = $request->nama_produk;
+        // $data['harga_produk']     = $request->harga_produk;
+        // $data['deskripsi_produk'] = $request->deskripsi_produk;
 
-        DB::table('produks')
-            ->insert($data);
+        // DB::table('produks')
+        //     ->insert($data);
 
         Session::put('success', 'Produk Berhasil Ditambahkan');
 
         return redirect('/create');
     }
+
+    public function editproduk($id){
+        $produk = Produk::find($id);
+
+        return view('pages.editproduk')->with('produk', $produk);
+
+    }
+
+    public function updateproduk(Request $request){
+        $produk = Produk::find($request->input('id'));
+        $produk->nama_produk      = $request->input('nama_produk');
+        $produk->harga_produk     = $request->input('harga_produk');
+        $produk->deskripsi_produk = $request->input('deskripsi_produk');
+
+        $produk->update  ();
+
+        Session::put('success', 'Produk '.$request->input('nama_produk'). ' Berhasil Diupdate');
+
+        return redirect('/services');
+    }
+
+    public function hapusproduk($id)
+    
 }
  
